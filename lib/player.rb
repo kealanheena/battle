@@ -1,0 +1,18 @@
+class Player
+
+  attr_reader :name, :health
+
+  def initialize(name)
+    @name = name
+    @health = 60
+  end
+
+  def attack(name)
+    name.receive_damage
+  end
+
+  def receive_damage
+    @health -= 10
+  end
+
+end
