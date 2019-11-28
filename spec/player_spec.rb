@@ -12,7 +12,4 @@ describe Player do
     end
   end
 
-  scenario "player 1 attacks, player 2 loses 10 hp" do
-    expect { dave.attack(sam) }.to change { sam.health }.by -10
-  end
 end
