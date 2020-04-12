@@ -27,12 +27,12 @@ describe "homepage", type: :feature do
     expect(page).to have_content("Kealan's Health: 50")
   end
 
-  # scenario "a lose screen should be displayed when a players HP drops to 0" do
-  #   sign_in_and_play
-  #   11.times {
-  #     click_button 'Attack'
-  #   }
-  #   expect(page).to have_content("Winner: Kealan")
-  # end
+  scenario "a lose screen should be displayed when a players HP drops to 0" do
+    sign_in_and_play
+    11.times {
+      click_button 'Attack'
+    }
+    expect(page).to have_content("Winner: Kealan")
+  end
 
 end

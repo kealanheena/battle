@@ -18,6 +18,7 @@ class Battle < Sinatra::Base
   get '/play' do
     @player_1, @player_2 = $game.player_1, $game.player_2
     @game = $game
+    redirect :win if @player_2.dead?
     erb :play
   end
 
@@ -26,6 +27,11 @@ class Battle < Sinatra::Base
     @game = $game
     @game.attack
     redirect :play
+  end
+
+  get '/win' do
+    @player_1 = $game.player_1
+    erb :win
   end
 
   # start the server if ruby file executed directly
