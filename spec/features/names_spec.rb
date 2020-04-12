@@ -14,12 +14,17 @@ describe "homepage", type: :feature do
   expect(page).to have_content("Harry's Health: 60")
   end
 
-  scenario "enable player to attack" do
+  scenario "enable player 1 to attack" do
     sign_in_and_play
     click_button 'Attack'
-    expect(page).to have_content("Kealan attacked Harry")
+    expect(page).to have_content("Harry's Health: 50")
   end
 
-  
+  scenario "enable player 2 to attack" do
+    sign_in_and_play
+    click_button 'Attack'
+    click_button 'Attack'
+    expect(page).to have_content("Kealan's Health: 50")
+  end
 
 end
