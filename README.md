@@ -46,6 +46,18 @@ You can run tests by running "rspec" in battle file.
 
 ## Tests 
 
+### Unit Tests
+
+#### Game Class
+
+- #attack
+  - player 1 attacks, player 2 loses 10 hp
+
+#### Player Class
+
+- #initialize
+  - stores the players name
+  - initializes with a health of 60
 
 ## Versioning
 

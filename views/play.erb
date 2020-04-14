@@ -2,9 +2,9 @@
 <h2><%= @player_1.name %>'s Health: <%= @player_1.health %>
 <h2><%= @player_2.name %>'s Health: <%= @player_2.health %>
 
-<% if @game.counter != 1 && @game.counter.even? %>
+<% if @game.turn != 1 && @game.turn.even? %>
   <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
-<% elsif @game.counter != 1 && !@game.counter.even? %>
+<% elsif @game.turn != 1 && !@game.turn.even? %>
   <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
 <% end %>
 
