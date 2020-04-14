@@ -2,10 +2,12 @@ source "https://rubygems.org"
 
 ruby "2.6.3"
 
+gem 'rubocop', '0.71.0'
+
 group :development, :test do
-  gem "rspec"
-  gem "sinatra"
-  gem "shotgun"
-  gem "rack"
   gem "capybara"
+  gem "rack"
+  gem "rspec"
+  gem "shotgun"
+  gem "sinatra"
 end

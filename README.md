@@ -41,6 +41,7 @@ As a Player,
 So I can Lose a game of Battle,
 I want to see a 'Lose' message if I reach 0HP first
 
+=======================
 Additional User Stories
 =======================
 
@@ -125,7 +126,7 @@ You can run tests by running "rspec" in battle file.
 
 ### Unit Tests
 
-#### Game Class
+### Game Class
 
 - #initialize
   - initializes with a player 1 variable
@@ -134,7 +135,7 @@ You can run tests by running "rspec" in battle file.
   - should increment the turn counter after an attack
   - should increment the turn counter by 2 after an attack
 
-#### Player Class
+### Player Class
 
 - #initialize
   - stores the players name
@@ -150,13 +151,13 @@ You can run tests by running "rspec" in battle file.
 
 ### Feature Tests
 
-- homepage
-  - it says 'BATTLE TIME!'
-  - it show players names on screen after they enter them
-  - it shows player's 2 hp
-  - enable player 1 to attack
-  - enable player 2 to attack
-  - a lose screen should be displayed when a players HP drops to 0
+### Homepage
+- it says 'BATTLE TIME!'
+- it show players names on screen after they enter them
+- it shows player's 2 hp
+- enable player 1 to attack
+- enable player 2 to attack
+- a lose screen should be displayed when a players HP drops to 0
 
 ## Versioning
 

@@ -10,8 +10,8 @@ describe "homepage", type: :feature do
   end
 
   scenario "it shows player's 2 hp" do
-  sign_in_and_play
-  expect(page).to have_content("Harry's Health: 60")
+    sign_in_and_play
+    expect(page).to have_content("Harry's Health: 60")
   end
 
   scenario "enable player 1 to attack" do
