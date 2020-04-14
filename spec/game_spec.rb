@@ -22,5 +22,11 @@ describe Game do
       @game.attack
       expect(@game.turn).to eq 2
     end
+
+    it "should increment the turn counter by 2 after an attack" do
+      @game.attack
+      @game.attack
+      expect(@game.turn).to eq 3
+    end
   end
 end

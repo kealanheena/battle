@@ -44,12 +44,11 @@ describe Player do
       expect(dave.dead?).to eq true
     end
 
-    it "should return true if a players hit points below to 60" do
+    it "should return true if a players hit points below 60" do
       7.times {
         dave.receive_damage
       }
       expect(dave.dead?).to eq true
     end
   end
-
 end
