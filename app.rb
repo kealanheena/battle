@@ -5,33 +5,33 @@ require "./lib/game"
 class Battle < Sinatra::Base
 
   enable :sessions
+
+  before '/play*' do
+    @game = Game.instance
+    @player_1, @player_2 = @game.player_1, @game.player_2
+  end
   
   get '/' do
     erb :index
   end
 
   post '/names' do
-    $game = Game.new(params[:player_1], params[:player_2])
-    redirect '/play'
+    Game.new(params[:player_1], params[:player_2])
+    redirect :play
   end
 
   get '/play' do
-    @player_1, @player_2 = $game.player_1, $game.player_2
-    @game = $game
-    redirect :win if @player_2.dead?
+    redirect '/play/winner' if @player_2.dead?
     erb :play
   end
 
-  get '/attack' do
-    @player_1, @player_2 = $game.player_1, $game.player_2
-    @game = $game
+  get '/play/attack' do
     @game.attack
     redirect :play
   end
 
-  get '/win' do
-    @player_1 = $game.player_1
-    erb :win
+  get '/play/winner' do
+    erb :winner
   end
 
   # start the server if ruby file executed directly

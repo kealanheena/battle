@@ -6,11 +6,16 @@ class Game
     @player_1 = Player.new(name_1)
     @player_2 = Player.new(name_2)
     @turn = 1
+    @@instance = self
   end
 
   def attack
     @turn.even? ? @player_1.receive_damage : @player_2.receive_damage
     @turn += 1
+  end
+
+  def self.instance
+    @@instance
   end
 
 end
