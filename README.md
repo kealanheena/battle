@@ -134,6 +134,13 @@ You can run tests by running "rspec" in battle file.
 - #attack
   - should increment the turn counter after an attack
   - should increment the turn counter by 2 after an attack
+- #poison_damage
+  - player 1
+    - should do additional damage if true
+    - it should do nothing if false
+  - player 2
+    - should do additional damage if true
+    - it should do nothing if false
 - #self.instance
   - should return an instance of the 'Game' class
 
@@ -150,6 +157,10 @@ You can run tests by running "rspec" in battle file.
   - should still be alive after 5 attacks
   - should return true if a players hit points drop to 60
   - should return true if a players hit points below 60
+- #get_damage
+  - should reduce the players health by 5
+  - should set poison to true when srand(6) is passed
+  - should set poison to false when srand(1) is passed
 
 ### Feature Tests
 
