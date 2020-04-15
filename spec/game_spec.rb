@@ -29,4 +29,10 @@ describe Game do
       expect(@game.turn).to eq 3
     end
   end
+
+  describe "#self.instance" do
+    it "should return an instance of the 'Game' class" do
+      expect(Game.instance).to eq @game
+    end
+  end
 end

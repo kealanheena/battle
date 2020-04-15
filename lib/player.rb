@@ -7,8 +7,8 @@ class Player
     @health = 60
   end
 
-  def receive_damage
-    @health -= 10
+  def receive_damage(damage = 10)
+    @health -= damage
   end
 
   def dead?

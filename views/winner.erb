@@ -1,1 +1,5 @@
-<h1>Winner: <%= @player_1.name %></h1>
+<% if @player_2.dead? %>
+  <h1>Winner: <%= @player_1.name %></h1>
+<% else %>
+  <h1>Winner: <%= @player_2.name %></h1>
+<% end %>

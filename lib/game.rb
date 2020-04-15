@@ -9,8 +9,8 @@ class Game
     @@instance = self
   end
 
-  def attack
-    @turn.even? ? @player_1.receive_damage : @player_2.receive_damage
+  def attack(damage = rand(1..10))
+    @turn.even? ? @player_1.receive_damage(damage) : @player_2.receive_damage(damage)
     @turn += 1
   end
 
