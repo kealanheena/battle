@@ -12,8 +12,8 @@ class Player
   end
 
   def poison_attack
+    @poison = true if rand(1..10) == 10
     get_damage(5)
-    @poison = true if rand(1..10) == 1
   end
 
   def dead?

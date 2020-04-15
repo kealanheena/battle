@@ -51,4 +51,22 @@ describe Player do
       expect(dave.dead?).to eq true
     end
   end
+
+  describe '#get_damage' do
+    it "should reduce the players health by 5" do 
+      expect(dave.poison_attack).to eq 55
+    end
+
+    it "should set poison to true when srand(6) is passed" do
+      srand(6)
+      dave.poison_attack
+      expect(dave.poison).to eq true
+    end
+
+    it "should set poison to false when srand(1) is passed" do
+      srand(1)
+      dave.poison_attack
+      expect(dave.poison).to be_falsey
+    end
+  end
 end
