@@ -1,14 +1,19 @@
 class Player
 
-  attr_reader :name, :health
+  attr_reader :name, :health, :poison
 
   def initialize(name)
     @name = name
     @health = 60
   end
 
-  def receive_damage(damage = 10)
+  def get_damage(damage = 10)
     @health -= damage
+  end
+
+  def poison_attack
+    get_damage(5)
+    @poison = true if rand(1..10) == 1
   end
 
   def dead?

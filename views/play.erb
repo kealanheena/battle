@@ -1,6 +1,19 @@
 <h1><%= @player_1.name %> vs. <%= @player_2.name %></h1>
-<h2><%= @player_1.name %>'s Health: <%= @player_1.health %>
-<h2><%= @player_2.name %>'s Health: <%= @player_2.health %>
+<h2>
+  <%= @player_1.name %>'s 
+  <% if @player_1.poison %>
+    (PSN'd)
+  <% end %>
+  Health: <%= @player_1.health %>
+</h2>
+
+<h2>
+  <%= @player_2.name %>'s 
+  <% if @player_2.poison %>
+    (PSN'd)
+  <% end %>
+  Health: <%= @player_2.health %>
+</h2>
 
 <% if @game.turn == 1%>
   <h3>LET'S GET READY TOOOO RUMBLE!!!</h3>
@@ -12,4 +25,8 @@
 
 <form action="/play/attack">
   <input type="submit" value="Attack">
+</form>
+
+<form action="/play/poison">
+  <input type="submit" value="Poison">
 </form>

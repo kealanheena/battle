@@ -134,6 +134,8 @@ You can run tests by running "rspec" in battle file.
 - #attack
   - should increment the turn counter after an attack
   - should increment the turn counter by 2 after an attack
+- #self.instance
+  - should return an instance of the 'Game' class
 
 ### Player Class
 

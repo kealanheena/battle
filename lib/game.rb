@@ -10,8 +10,21 @@ class Game
   end
 
   def attack(damage = rand(1..10))
-    @turn.even? ? @player_1.receive_damage(damage) : @player_2.receive_damage(damage)
+    @turn.even? ? @player_1.get_damage(damage) : @player_2.get_damage(damage)
     @turn += 1
+  end
+
+  def poison_attack
+    @turn.even? ? @player_1.poison_attack : @player_2.poison_attack
+    @turn += 1
+  end
+
+  def poison_damage
+    if @player_1.poison
+      @player_1.get_damage(rand(1..2))
+    elsif @player_2.poison
+      @player_2.get_damage(rand(1..2))
+    end
   end
 
   def self.instance

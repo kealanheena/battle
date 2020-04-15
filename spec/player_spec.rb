@@ -14,14 +14,14 @@ describe Player do
     end
   end
 
-  describe '#receive_damage' do
+  describe '#get_damage' do
     it "should reduce the players health by 10" do 
-      expect(dave.receive_damage).to eq 50
+      expect(dave.get_damage).to eq 50
     end
 
     it "should reduce the players health by 20 if attacked twice" do 
-      dave.receive_damage
-      expect(dave.receive_damage).to eq 40
+      dave.get_damage
+      expect(dave.get_damage).to eq 40
     end
   end
 
@@ -32,21 +32,21 @@ describe Player do
 
     it "should still be alive after 5 attacks" do
       5.times {
-        dave.receive_damage
+        dave.get_damage
       }
       expect(dave.dead?).to eq false
     end
 
     it "should return true if a players hit points drop to 60" do 
       6.times {
-        dave.receive_damage
+        dave.get_damage
       }
       expect(dave.dead?).to eq true
     end
 
     it "should return true if a players hit points below 60" do
       7.times {
-        dave.receive_damage
+        dave.get_damage
       }
       expect(dave.dead?).to eq true
     end
