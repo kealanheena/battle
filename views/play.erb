@@ -17,7 +17,7 @@
 
 <% if @game.turn == 1%>
   <h3>LET'S GET READY TOOOO RUMBLE!!!</h3>
-<% elsif @game.turn.even? %>
+<% elsif @game.turn.even? || @game.player_2.paralysed %>
   <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
 <% elsif !@game.turn.even? %>
   <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
@@ -29,4 +29,8 @@
 
 <form action="/play/poison">
   <input type="submit" value="Poison">
+</form>
+
+<form action="/play/electrocute">
+  <input type="submit" value="Electrocute">
 </form>
