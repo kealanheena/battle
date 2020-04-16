@@ -42,37 +42,34 @@ describe Game do
   end
 
   describe "#poison_damage" do
-
-    context 'player 1' do
-      before(:each) do
-        allow(@game.player_1).to receive(:poison) { true }
-        allow(@game.player_2).to receive(:poison) { false }
-      end
-
-      it "should do additional damage if true" do
-        expect(@game.poison_damage).to eq 58
-      end
-
-      it "it should do nothing if false" do
-        allow(@game.player_1).to receive(:poison) { false }
-        expect(@game.poison_damage).to eq nil
-      end
+    before(:each) do
+      allow(@game.player_1).to receive(:poison) { false }
+      allow(@game.player_2).to receive(:poison) { true }
     end
 
-    context 'player 2' do
-      before(:each) do
-        allow(@game.player_1).to receive(:poison) { false }
-        allow(@game.player_2).to receive(:poison) { true }
-      end
+    it "should do additional damage if true" do
+      expect(@game.poison_damage).to eq 58
+    end
 
-      it "should do additional damage if true" do
-        expect(@game.poison_damage).to eq 58
-      end
+    it "it should do nothing if false" do
+      allow(@game.player_2).to receive(:poison) { false }
+      expect(@game.poison_damage).to eq nil
+    end
+  end
 
-      it "it should do nothing if false" do
-        allow(@game.player_2).to receive(:poison) { false }
-        expect(@game.poison_damage).to eq nil
-      end
+  describe "#electric_attack" do
+    before(:each) do
+      allow(@game.player_1).to receive(:paralysed) { false }
+      allow(@game.player_2).to receive(:paralysed) { true }
+    end
+
+    it "should do additional damage if true" do
+      expect(@game.electric_attack).to eq 3
+    end
+
+    it "it should do nothing if false" do
+      allow(@game.player_2).to receive(:paralysed) { false }
+      expect(@game.electric_attack).to eq 2
     end
   end
 

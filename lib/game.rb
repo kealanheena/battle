@@ -26,19 +26,18 @@ class Game
   end
 
   def poison_damage
-    if @player_1.poison
-      @player_1.get_damage(rand(1..2))
-    elsif @player_2.poison
-      @player_2.get_damage(rand(1..2))
-    end
-  end
-
-  def paralysis_status
-    @turn += 1 if @player_1.paralysed || @player_2.paralysed
+    @player_1.get_damage(rand(1..2)) if @player_1.poison
+    @player_2.get_damage(rand(1..2)) if @player_2.poison  
   end
 
   def self.instance
     @@instance
+  end
+
+  private
+
+  def paralysis_status
+    @turn += 1 if @player_1.paralysed || @player_2.paralysed
   end
 
 end

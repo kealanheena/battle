@@ -32,6 +32,8 @@ class Player
     @health <= 0
   end
 
+  private
+
   def reset_status
     @paralysed = false
   end
