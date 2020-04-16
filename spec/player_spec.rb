@@ -52,7 +52,7 @@ describe Player do
     end
   end
 
-  describe '#get_damage' do
+  describe '#poison_attack' do
     it "should reduce the players health by 5" do 
       expect(dave.poison_attack).to eq 55
     end
@@ -63,10 +63,28 @@ describe Player do
       expect(dave.poison).to eq true
     end
 
-    it "should set poison to false when srand(1) is passed" do
+    it "should make poison to falsey when srand(1) is passed" do
       srand(1)
       dave.poison_attack
       expect(dave.poison).to be_falsey
+    end
+  end
+
+  describe '#electric_attack' do
+    it "should reduce the players health by 5" do 
+      expect(dave.electric_attack).to eq 55
+    end
+
+    it "should set paralysed to true when srand(7) is passed" do
+      srand(7)
+      dave.electric_attack
+      expect(dave.paralysed).to eq true
+    end
+
+    it "should make paralysed to falsey when srand(1) is passed" do
+      srand(1)
+      dave.electric_attack
+      expect(dave.paralysed).to be_falsey
     end
   end
 end
