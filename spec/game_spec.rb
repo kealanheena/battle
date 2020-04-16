@@ -32,12 +32,12 @@ describe Game do
 
   describe "#poison_attack" do
     it "should increment the turn counter after an attack" do
-      expect(@game.attack).to eq 2
+      expect(@game.poison_attack).to eq 2
     end
 
     it "should increment the turn counter by 2 after an attack" do
       @game.attack
-      expect(@game.attack).to eq 3
+      expect(@game.poison_attack).to eq 3
     end
   end
 
