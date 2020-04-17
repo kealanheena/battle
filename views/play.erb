@@ -17,9 +17,9 @@
 
 <% if @game.turn == 1%>
   <h3>LET'S GET READY TOOOO RUMBLE!!!</h3>
-<% elsif @game.turn.even? || @game.player_2.paralysed %>
+<% elsif @game.turn.even? || @player_2.paralysed || @player_1.sleeping %>
   <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
-<% elsif !@game.turn.even? || @game.player_1.paralysed %>
+<% elsif !@game.turn.even? || @player_1.paralysed || @player_1.sleeping %>
   <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
 <% end %>
 

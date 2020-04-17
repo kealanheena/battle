@@ -87,4 +87,16 @@ describe Player do
       expect(dave.paralysed).to be_falsey
     end
   end
+
+  describe '#sleep_spell' do
+    it 'should set sleeping to true when srand(1) is run' do
+      srand(1)
+      expect(dave.sleep_spell).to eq true
+    end
+
+    it 'should set sleeping to false when srand(6) is run' do
+      srand(6)
+      expect(dave.sleep_spell).to be_falsey
+    end
+  end
 end

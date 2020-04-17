@@ -22,11 +22,11 @@ class Game
   def electric_attack
     @turn.even? ? @player_1.electric_attack : @player_2.electric_attack
     paralysis_status
-    @turn += 1
   end
 
   def sleep_spell
-    rand(1..10) != 10 ? @turn += 2 : @turn += 1
+    @turn.even? ? @player_1.sleep_spell : @player_2.sleep_spell
+    sleep_status
   end
 
   def poison_damage
@@ -41,7 +41,11 @@ class Game
   private
 
   def paralysis_status
-    @turn += 1 if @player_1.paralysed || @player_2.paralysed
+    @player_1.paralysed || @player_2.paralysed ? @turn += 2 : @turn += 1
   end
 
+  def sleep_status
+    @player_1.sleeping || @player_2.sleeping ? @turn += 2 : @turn += 1
+  end
+  
 end

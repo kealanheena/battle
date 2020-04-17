@@ -1,6 +1,6 @@
 class Player
 
-  attr_reader :name, :health, :poison, :paralysed
+  attr_reader :name, :health, :poison, :paralysed, :sleeping
 
   def initialize(name)
     @name = name
@@ -28,6 +28,11 @@ class Player
     get_damage(5)
   end
 
+  def sleep_spell
+    reset_status
+    @sleeping = true if rand(1..10) != 10
+  end
+
   def dead?
     @health <= 0
   end
@@ -36,6 +41,7 @@ class Player
 
   def reset_status
     @paralysed = false
+    @sleeping = false
   end
 
 end
