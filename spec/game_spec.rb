@@ -41,22 +41,6 @@ describe Game do
     end
   end
 
-  describe "#poison_damage" do
-    before(:each) do
-      allow(@game.player_1).to receive(:poison) { false }
-      allow(@game.player_2).to receive(:poison) { true }
-    end
-
-    it "should do additional damage if true" do
-      expect(@game.poison_damage).to eq 58
-    end
-
-    it "it should do nothing if false" do
-      allow(@game.player_2).to receive(:poison) { false }
-      expect(@game.poison_damage).to eq nil
-    end
-  end
-
   describe "#electric_attack" do
     before(:each) do
       allow(@game.player_1).to receive(:paralysed) { false }
@@ -70,6 +54,34 @@ describe Game do
     it "it should do nothing if false" do
       allow(@game.player_2).to receive(:paralysed) { false }
       expect(@game.electric_attack).to eq 2
+    end
+  end
+
+  describe '#sleep_spell' do
+    it 'should increase the turn counter by 2 when srand(1) is run' do
+      srand(1)
+      expect(@game.sleep_spell).to eq 3
+    end
+
+    it 'should increase the turn counter by 1 when srand(6) is run' do
+      srand(6)
+      expect(@game.sleep_spell).to eq 2
+    end
+  end
+
+  describe "#poison_damage" do
+    before(:each) do
+      allow(@game.player_1).to receive(:poison) { false }
+      allow(@game.player_2).to receive(:poison) { true }
+    end
+
+    it "should do additional damage if true" do
+      expect(@game.poison_damage).to eq 58
+    end
+
+    it "it should do nothing if false" do
+      allow(@game.player_2).to receive(:poison) { false }
+      expect(@game.poison_damage).to eq nil
     end
   end
 

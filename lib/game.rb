@@ -25,6 +25,10 @@ class Game
     @turn += 1
   end
 
+  def sleep_spell
+    rand(1..10) != 10 ? @turn += 2 : @turn += 1
+  end
+
   def poison_damage
     @player_1.get_damage(rand(1..2)) if @player_1.poison
     @player_2.get_damage(rand(1..2)) if @player_2.poison  
