@@ -56,6 +56,20 @@ describe "homepage", type: :feature do
     expect(page).to have_content("Kealan's Health: 60")
   end
 
+  scenario "sleep attack should should not decrease health" do
+    sign_in_and_play
+    click_button 'Sleep'
+    expect(page).to have_content("Harry's Health: 60")
+  end
+
+  scenario "a players turn should be skipped when the sleep attack is used" do
+    sign_in_and_play
+    srand(7)
+    click_button 'Sleep'
+    click_button 'Electrocute'
+    expect(page).to have_content("Harry's Health: 55")
+  end
+
   scenario "a win screen should be displayed when a player 2 HP drops to 0" do
     sign_in_and_play
     Game.instance.attack(59)
