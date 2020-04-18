@@ -41,6 +41,21 @@ describe "homepage", type: :feature do
     expect(page).to have_content("Harry's (PSN'd)")
   end
 
+  scenario "electric attacks should decrease health by 5" do
+    sign_in_and_play
+    click_button 'Electrocute'
+    expect(page).to have_content("Harry's Health: 55")
+  end
+
+  scenario "a player turn should be skipped if they are paralysed" do
+    sign_in_and_play
+    srand(7)
+    click_button 'Electrocute'
+    click_button 'Electrocute'
+    expect(page).to have_content("Harry's Health: 50")
+    expect(page).to have_content("Kealan's Health: 60")
+  end
+
   scenario "a win screen should be displayed when a player 2 HP drops to 0" do
     sign_in_and_play
     Game.instance.attack(59)
