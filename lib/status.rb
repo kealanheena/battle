@@ -5,10 +5,15 @@ class Status
   end
 
   def add(status)
-    @current << status unless @current.include?(status)
+    @current << status unless effect?(status)
   end
 
   def remove(status)
-    []
+    @current.delete(status)
+    @current
+  end
+
+  def effect?(status)
+    @current.include?(status)
   end
 end
