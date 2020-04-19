@@ -5,6 +5,6 @@ class Status
   end
 
   def add(status)
-    @current << status
+    @current << status unless @current.include?(status)
   end
 end

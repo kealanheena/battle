@@ -13,7 +13,13 @@ describe Status do
       expect(status.add('paralysed')).to eq ['paralysed']
     end
 
-    it 'should add different statuses to the current array' do
+    it 'should be able to add multiple statuses to the current array' do
+      status.add('poison')
+      expect(status.add('paralysed')).to eq ['poison', 'paralysed']
+    end
+
+    it 'should not add the same status twice' do
+      status.add('poison')
       status.add('poison')
       expect(status.add('paralysed')).to eq ['poison', 'paralysed']
     end
