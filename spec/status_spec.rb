@@ -24,4 +24,11 @@ describe Status do
       expect(status.add('paralysed')).to eq ['poison', 'paralysed']
     end
   end
+
+  describe '#remove' do
+    it 'should remove statuses' do
+      status.add('poison')
+      expect(status.remove('poison')).to eq []
+    end
+  end
 end

@@ -7,4 +7,8 @@ class Status
   def add(status)
     @current << status unless @current.include?(status)
   end
+
+  def remove(status)
+    []
+  end
 end
