@@ -4,7 +4,7 @@ class Status
     @current = []
   end
 
-  def add(effect)
-    ['poison']
+  def add(status)
+    @current << status
   end
 end
