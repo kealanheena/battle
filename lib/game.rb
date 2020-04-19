@@ -40,12 +40,8 @@ class Game
 
   private
 
-  def paralysis_status
-    @player_1.paralysed || @player_2.paralysed ? @turn += 2 : @turn += 1
-  end
-
-  def sleep_status
-    @player_1.sleeping || @player_2.sleeping ? @turn += 2 : @turn += 1
+  def immobilised_status
+    @player_1.status || @player_2.paralysed ? @turn += 2 : @turn += 1
   end
   
 end

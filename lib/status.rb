@@ -1,5 +1,7 @@
 class Status
 
+  attr_reader :current
+
   def initialize
     @current = []
   end

@@ -1,36 +1,28 @@
+require_relative 'status'
+
 class Player
 
-  attr_reader :name, :health, :poison, :paralysed, :sleeping
+  attr_reader :name, :health, :status
 
-  def initialize(name)
+  def initialize(name, status = Status.new)
     @name = name
     @health = 60
+    @status = status
   end
 
-  def get_damage(damage = 10)
+  def apply_damage(damage = 10)
     @health -= damage
   end
 
   def attack(damage)
     reset_status
-    get_damage(damage)
+    apply_damage(damage)
   end
 
-  def poison_attack
+  def special_attack(effect)
     reset_status
-    @poison = true if rand(1..10) == 10
-    get_damage(5)
-  end
-
-  def electric_attack
-    reset_status
-    @paralysed = true if rand(1..8) == 8
-    get_damage(5)
-  end
-
-  def sleep_spell
-    reset_status
-    @sleeping = true if rand(1..10) != 10
+    add_status(effect)
+    apply_damage(5)
   end
 
   def dead?
@@ -39,9 +31,16 @@ class Player
 
   private
 
+  def apply_damage(damage)
+    @health -= damage
+  end
+
+  def add_status(effect)
+    @status.add(effect) if rand(1..10) == 10
+  end
+
   def reset_status
-    @paralysed = false
-    @sleeping = false
+    @status.remove('immobilised')
   end
 
 end
