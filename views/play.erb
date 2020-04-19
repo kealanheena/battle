@@ -1,7 +1,7 @@
 <h1><%= @player_1.name %> vs. <%= @player_2.name %></h1>
 <h2>
   <%= @player_1.name %>'s 
-  <% if @player_1.poison %>
+  <% if @game.poisoned? %>
     (PSN'd)
   <% end %>
   Health: <%= @player_1.health %>
@@ -9,7 +9,7 @@
 
 <h2>
   <%= @player_2.name %>'s 
-  <% if @player_2.poison %>
+  <% if @game.poisoned? %>
     (PSN'd)
   <% end %>
   Health: <%= @player_2.health %>

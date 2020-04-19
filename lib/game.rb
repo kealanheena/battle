@@ -14,24 +14,14 @@ class Game
     @turn += 1
   end
 
-  def poison_attack
-    @turn.even? ? @player_1.poison_attack : @player_2.poison_attack
-    @turn += 1
-  end
-
-  def electric_attack
-    @turn.even? ? @player_1.electric_attack : @player_2.electric_attack
-    paralysis_status
-  end
-
-  def sleep_spell
-    @turn.even? ? @player_1.sleep_spell : @player_2.sleep_spell
-    sleep_status
+  def special_attack(effect)
+    @turn.even? ? @player_1.special_attack(effect) : @player_2.specialattack(effect)
+    immobilised_status
   end
 
   def poison_damage
-    @player_1.get_damage(rand(1..2)) if @player_1.poison
-    @player_2.get_damage(rand(1..2)) if @player_2.poison  
+    @player_1.poison_damage if poisoned?(@player_1)
+    @player_2.poison_damage if poisoned?(@player_2)
   end
 
   def self.instance
@@ -41,7 +31,23 @@ class Game
   private
 
   def immobilised_status
-    @player_1.status || @player_2.paralysed ? @turn += 2 : @turn += 1
+    if immobilised?
+      @turn += 2
+    else
+      @turn += 1
+    end
+  end
+
+  def status_check(player, status)
+    player.current_statuse.include?(status)
+  end
+
+  def immobilised?
+    @player_1.immobilised? || @player_2.immobilised?
+  end
+
+  def poisoned?(player)
+    player.poisoned?
   end
   
 end

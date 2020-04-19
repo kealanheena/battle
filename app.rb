@@ -22,7 +22,7 @@ class Battle < Sinatra::Base
 
   get '/play' do
     redirect '/play/winner' if @player_1.dead? || @player_2.dead?
-    @game.poison_damage
+    # @game.poison_damage
     erb :play
   end
 
@@ -31,20 +31,20 @@ class Battle < Sinatra::Base
     redirect :play
   end
 
-  get '/play/poison' do
-    @game.poison_attack
-    redirect :play
-  end
+  # get '/play/poison' do
+  #   @game.poison_attack
+  #   redirect :play
+  # end
 
-  get '/play/electrocute' do
-    @game.electric_attack
-    redirect :play
-  end
+  # get '/play/electrocute' do
+  #   @game.electric_attack
+  #   redirect :play
+  # end
 
-  get '/play/sleep' do
-    @game.sleep_spell
-    redirect :play
-  end
+  # get '/play/sleep' do
+  #   @game.sleep_spell
+  #   redirect :play
+  # end
 
   get '/play/winner' do
     erb :winner

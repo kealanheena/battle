@@ -8,17 +8,14 @@ describe Player do
   before(:each) do
     allow(status).to receive(:add).with('poisoned') { ['poisoned'] }
     allow(status).to receive(:remove).with('immobilised') { [] }
+    allow(status).to receive(:current) { [] }
   end
 
-  # describe "#initialize" do
-  #   it "stores the players name" do 
-  #     expect(dave.name).to eq "Dave"
-  #   end
-
-  #   it "initializes with a health of 60" do 
-  #     expect(dave.health).to eq 60
-  #   end
-  # end
+  describe "#initialize" do
+    it "stores the players name" do 
+      expect(dave.name).to eq "Dave"
+    end
+  end
 
   describe '#attack' do
     it "should reduce the players health by 10 when 10 is passed as an argument" do 
@@ -57,4 +54,26 @@ describe Player do
       expect(dave.special_attack('poisoned')).to eq 55
     end
   end
+
+  describe '#poisoned?' do
+    it 'should return false if player doesn\'t have poisoned status' do
+      expect(dave.poisoned?).to eq false
+    end
+
+    it 'should return true if player has poisoned status' do
+      allow(status).to receive(:current) { ['poisoned'] }
+      expect(dave.poisoned?).to eq true
+    end
+  end
+
+  describe '#immobilised?' do
+  it 'should return false if player doesn\'t have immobilised status' do
+    expect(dave.immobilised?).to eq false
+  end
+
+  it 'should return true if player has immobilised status' do
+    allow(status).to receive(:current) { ['immobilised'] }
+    expect(dave.immobilised?).to eq true
+  end
+end
 end
