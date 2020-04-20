@@ -2,6 +2,8 @@
 
 # Battle Challenge
 
+<img src="./public/img/battle.png">
+
 ## User Stories
 
 ```
@@ -49,10 +51,6 @@ As a Player,
 So I can play a suspenseful game of Battle,
 I want all Attacks to deal a random amount of damage
 
-As a lonely Player,
-So I can keep my Battle skills up to scratch
-I want to play a Computerised opponent
-
 As a Player,
 So I can enjoy a game of Battle with more variety,
 I want to choose from a range of attacks I could make
@@ -68,10 +66,6 @@ I want one of my attacks to have a chance of Poisoning my Opponent (Opponent tak
 As a Player,
 So I can better enjoy a game of Battle,
 I want to make an attack that has a chance of sending my Opponent to Sleep (Opponent definitely misses next turn)
-
-As a Player,
-So I can extend my joyous experience of Battle,
-I want to have an attack that heals some of my Hit Points
 
 As a Player,
 So I can enjoy my game of Battle,
@@ -99,6 +93,9 @@ You'll be able to:
 - Player 1 & 2 will be able to:
   - Attack
   - Receive damage
+  - Poison your opponent(recieve small amount of damage each turn)
+  - Paralyse your opponent(skip your go)
+  - Put your opponent asleep(skip your go)
 - See a victory page when you've defeated your opponent
 
 ## Getting Started
@@ -128,21 +125,21 @@ You can run tests by running "rspec" in battle file.
 
 ### Game Class
 
-- #initialize
-  - initializes with a player 1 variable
-  - initializes with a player 2 variable
 - #attack
   - should increment the turn counter after an attack
   - should increment the turn counter by 2 after an attack
-- #poison_attack
+- #special_attack
   - should increment the turn counter after an attack
-  - should increment the turn counter by 2 after an attack
+  - should increment the turn counter by 2 if immobilised
+- #sleep_spell
+  - should increment the turn counter after an attack
+  - should increment the turn counter by 2 if immobilised
 - #poison_damage
   - should do additional damage if true
   - it should do nothing if false
-- #electric_attack
-  - should do additional damage if true
-  - it should do nothing if false
+- #over?
+  - should return true if a player is dead
+  - should return false if both players are alive
 - #self.instance
   - should return an instance of the 'Game' class
 
@@ -150,33 +147,68 @@ You can run tests by running "rspec" in battle file.
 
 - #initialize
   - stores the players name
-  - initializes with a health of 60
 - #get_damage
-  - should reduce the players health by 10
-  - should reduce the players health by 20 if attacked twice
+  - should reduce the players health by 10 when 10 is passed as an argument
+  - should reduce the players health by 20 if attacked twice with 10 as an argument
 - #dead?
   - should start a player as alive
-  - should still be alive after 5 attacks
+  - should still be alive after receiving 50 damage
   - should return true if a players hit points drop to 60
   - should return true if a players hit points below 60
-- #poison_damage
-  - should reduce the players health by 5
-  - should set poison to true when srand(6) is passed
-  - should set poison to false when srand(1) is passed
-- #electric_attack
-  - should reduce the players health by 5
-  - should set paralysed to true when srand(7) is passed
-  - should make paralysed to falsey when srand(1) is passed
+- #special_attack
+  - should deal 5 damage
+- #sleep_spell
+  - should add the immobilised status to the status array when sran(1) is called
+  - should return nil when srand(6) is called
+- #poisoned?
+  - should return false if player doesn\'t have poisoned status
+  - should return true if player has poisoned status
+- #immobilised?
+  - should return false if player doesn't have immobilised status
+  - should return true if player has immobilised status
+
+### Status Class
+
+- #add
+  - should add a status to the current array
+  - should add different statuses to the current array
+  - should be able to add multiple statuses to the current array
+  - should not add the same status twice
+- #remove
+  - should remove statuses
+  - should only remove the specified statuses
+  - should retrun the current array if the remove item is not present
+- #effect?
+  - should return true when the status is in the current array
+  - should return false when the status is not in the current array
 
 ### Feature Tests
 
 ### Homepage
+
 - it says 'BATTLE TIME!'
+
+### Player Info
+
 - it show players names on screen after they enter them
-- it shows player's 2 hp
+- it shows player 1's hp
+- it shows player 2's hp
+- a player should see be able to see if they're poisoned
+
+### Attack
+
 - enable player 1 to attack
 - enable player 2 to attack
-- a lose screen should be displayed when a players HP drops to 0
+- poison attacks should decrease health by 5
+- electric attacks should decrease health by 5
+- a player turn should be skipped if they are paralysed
+- sleep attack should should not decrease health
+- a players turn should be skipped when the sleep attack is used
+
+### Winner
+
+- a win screen should be displayed when a player 2 HP drops to 0
+- a lose screen should be displayed when a player 1 HP drops to 0
 
 ## Versioning
 

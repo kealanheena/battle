@@ -1,6 +1,14 @@
-<h1>BATTLE TIME!</h1>
-<form action="/names" method="post">
-  <input type="text" name="player_1" placeholder="Player 1">
-  <input type="text" name="player_2" placeholder="Player 2">
-  <input type="submit" value="Submit">
-</form>
+<div class="container">
+  <h1>BATTLE TIME!</h1>
+  <form action="/names" method="post">
+    <div class="row">
+      <div class="col">
+        <input class="form-home form-control" type="text" name="player_1" placeholder="Player 1">
+      </div>
+      <div class="col">
+        <input class="form-home form-control" type="text" name="player_2" placeholder="Player 2">
+      </div>
+    </div>
+    <input class="form-control btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>

@@ -1,40 +1,60 @@
-<h1><%= @player_1.name %> vs. <%= @player_2.name %></h1>
-<h2>
-  <%= @player_1.name %>'s 
-  <% if @player_1.poisoned? %>
-    (PSN'd)
+<div class="container">
+  <h1><%= @player_1.name %> vs. <%= @player_2.name %></h1>
+  <h2>
+    <%= @player_1.name %>'s 
+    <% if @player_1.poisoned? %>
+      (PSN'd)
+    <% end %>
+    Health: <%= @player_1.health %>
+  </h2>
+
+  <div class="jumbotron">
+    <img class="float-right" src="/img/sprite_2.png"/>
+    <br>
+    <img class="float-left" src="/img/sprite_1.png"/>
+  </div>
+
+  <h2>
+    <%= @player_2.name %>'s 
+    <% if @player_2.poisoned? %>
+      (PSN'd)
+    <% end %>
+    Health: <%= @player_2.health %>
+  </h2>
+
+  <% if @game.turn == 1%>
+    <h3><%= @player_1.name %> has the first attack</h3>
+  <% elsif @game.turn.even? || @player_2.immobilised? %>
+    <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
+  <% elsif !@game.turn.even? || @player_1.immobilised? %>
+    <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
   <% end %>
-  Health: <%= @player_1.health %>
-</h2>
 
-<h2>
-  <%= @player_2.name %>'s 
-  <% if @player_2.poisoned? %>
-    (PSN'd)
-  <% end %>
-  Health: <%= @player_2.health %>
-</h2>
+  <div class="row">
+    <div class="col">
+      <form action="/play/attack">
+        <input class="form-control btn btn-danger" type="submit" value="Attack">
+      </form>
+    </div>
+    <div class="col">
+      <form action="/play/poison">
+        <input class="form-control btn btn-danger" type="submit" value="Poison">
+      </form>
+    </div>
+  </div>
 
-<% if @game.turn == 1%>
-  <h3>LET'S GET READY TOOOO RUMBLE!!!</h3>
-<% elsif @game.turn.even? || @player_2.immobilised? %>
-  <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
-<% elsif !@game.turn.even? || @player_1.immobilised? %>
-  <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
-<% end %>
+  <br>
 
-<form action="/play/attack">
-  <input type="submit" value="Attack">
-</form>
-
-<form action="/play/poison">
-  <input type="submit" value="Poison">
-</form>
-
-<form action="/play/electrocute">
-  <input type="submit" value="Electrocute">
-</form>
-
-<form action="/play/sleep">
-  <input type="submit" value="Sleep">
-</form>
+  <div class="row">
+    <div class="col">
+      <form action="/play/electrocute">
+        <input class="form-control btn btn-danger" type="submit" value="Electrocute">
+      </form>
+    </div>
+    <div class="col">
+      <form action="/play/sleep">
+        <input class="form-control btn btn-danger" type="submit" value="Sleep">
+      </form>
+    </div>
+  </div>
+</div>
