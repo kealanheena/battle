@@ -27,7 +27,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play/attack' do
-    @game.attack
+    @game.attack(rand(1..10))
     redirect :play
   end
 
