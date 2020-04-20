@@ -21,8 +21,8 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    redirect '/play/winner' if @player_1.dead? || @player_2.dead?
-    # @game.poison_damage
+    redirect '/play/winner' if @game.over?
+    @game.poison_damage
     erb :play
   end
 

@@ -59,6 +59,22 @@ describe Game do
     end
   end
 
+  describe "#over?" do
+    before(:each) do
+      allow(player_1).to receive(:dead?) { true }
+      allow(player_2).to receive(:dead?) { false }
+    end
+
+    it "should return true if a player is dead" do
+      expect(@game.over?).to eq true
+    end
+
+    it "should return false if both players are alive" do
+      allow(player_1).to receive(:dead?) { false }
+      expect(@game.over?).to eq false
+    end
+  end
+
   describe "#self.instance" do
     it "should return an instance of the 'Game' class" do
       expect(Game.instance).to eq @game

@@ -24,6 +24,10 @@ class Game
     @player_2.poison_damage if poisoned?(@player_2)
   end
 
+  def over?
+    @player_1.dead? || @player_2.dead?
+  end
+
   def self.instance
     @@instance
   end
