@@ -1,15 +1,18 @@
 describe Game do
 
+  let(:player_1) { double(:player) }
+  let(:player_2) { double(:player) }
+
   before(:each) do
-    @player_1 = double(:player)
-    @player_2 = double(:player)
-    @game = Game.new(@player_1, @player_2)
-    allow(@game.player_2).to receive(:health) { 50 }
-    allow(@game.player_2).to receive(:apply_damage) { 58 }
-    allow(@game.player_1).to receive(:apply_damage) { 58 }
+    @game = Game.new('Dave', 'Jeff', player_1, player_2)
   end
 
   describe "#attack" do
+    before(:each) do
+      allow(player_1).to receive(:attack).with(10) { 50 }
+      allow(player_2).to receive(:attack).with(10) { 50 }
+    end
+
     it "should increment the turn counter after an attack" do
       expect(@game.attack).to eq 2
     end
@@ -20,18 +23,38 @@ describe Game do
     end
   end
 
+  describe "#special_attack" do
+    before(:each) do
+      allow(player_1).to receive(:immobilised?) { false }
+      allow(player_2).to receive(:immobilised?) { false }
+      allow(player_2).to receive(:special_attack).with('poisoned') { 55 }
+    end
+
+    it "should increment the turn counter after an attack" do
+      expect(@game.special_attack('poisoned')).to eq 2
+    end
+
+    it "should increment the turn counter by 2 if immobilised" do
+      allow(player_1).to receive(:immobilised?) { true }
+      expect(@game.special_attack('poisoned')).to eq 3
+    end
+  end
+
   describe "#poison_damage" do
     before(:each) do
-      allow(@game.player_1).to receive(:poisoned?) { false }
-      allow(@game.player_2).to receive(:poisoned?) { true }
+      allow(player_1).to receive(:poisoned?) { false }
+      allow(player_2).to receive_messages(
+        :poisoned? => true,
+        :poison_damage => 59
+      )
     end
 
     it "should do additional damage if true" do
-      expect(@game.poison_damage).to eq 58
+      expect(@game.poison_damage).to eq 59
     end
 
     it "it should do nothing if false" do
-      allow(@game.player_2).to receive(:poisoned?) { false }
+      allow(player_2).to receive(:poisoned?) { false }
       expect(@game.poison_damage).to eq nil
     end
   end

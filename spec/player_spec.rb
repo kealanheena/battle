@@ -67,13 +67,13 @@ describe Player do
   end
 
   describe '#immobilised?' do
-  it 'should return false if player doesn\'t have immobilised status' do
-    expect(dave.immobilised?).to eq false
-  end
+    it 'should return false if player doesn\'t have immobilised status' do
+      expect(dave.immobilised?).to eq false
+    end
 
-  it 'should return true if player has immobilised status' do
-    allow(status).to receive(:current) { ['immobilised'] }
-    expect(dave.immobilised?).to eq true
+    it 'should return true if player has immobilised status' do
+      allow(status).to receive(:current) { ['immobilised'] }
+      expect(dave.immobilised?).to eq true
+    end
   end
-end
 end

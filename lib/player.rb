@@ -22,7 +22,7 @@ class Player
   end
 
   def poison_damage
-    apply_damage(rand(1..2)) if poisoned?
+    apply_damage(1) if poisoned?
   end
 
   def dead?
