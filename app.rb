@@ -41,10 +41,10 @@ class Battle < Sinatra::Base
     redirect :play
   end
 
-  # get '/play/sleep' do
-  #   @game.sleep_spell
-  #   redirect :play
-  # end
+  get '/play/sleep' do
+    @game.sleep_spell
+    redirect :play
+  end
 
   get '/play/winner' do
     erb :winner

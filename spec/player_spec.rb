@@ -6,7 +6,6 @@ describe Player do
   let(:dave) { Player.new('Dave', status) }
 
   before(:each) do
-    allow(status).to receive(:add).with('poisoned') { ['poisoned'] }
     allow(status).to receive(:remove).with('immobilised') { [] }
     allow(status).to receive(:current) { [] }
   end
@@ -50,8 +49,28 @@ describe Player do
   end
 
   describe '#special_attack' do
+    before(:each) do
+      allow(status).to receive(:add).with('poisoned') { ['poisoned'] }
+    end
+   
     it 'should deal 5 damage' do
       expect(dave.special_attack('poisoned')).to eq 55
+    end
+  end
+
+  describe '#sleep_spell' do
+    before(:each) do
+      allow(status).to receive(:add).with('immobilised') { ['immobilised'] }
+    end
+
+    it 'should add the immobilised status to the status array when sran(1) is called' do
+      srand(1)
+      expect(dave.sleep_spell).to eq ['immobilised']
+    end
+
+    it 'should return nil when srand(6) is called' do
+      srand(6)
+      expect(dave.sleep_spell).to eq nil
     end
   end
 

@@ -19,6 +19,11 @@ class Game
     immobilised_status
   end
 
+  def sleep_spell
+    @turn.even? ? @player_1.sleep_spell : @player_2.sleep_spell
+    immobilised_status
+  end
+
   def poison_damage
     @player_1.poison_damage if poisoned?(@player_1)
     @player_2.poison_damage if poisoned?(@player_2)
@@ -40,10 +45,6 @@ class Game
     else
       @turn += 1
     end
-  end
-
-  def status_check(player, status)
-    player.current_statuse.include?(status)
   end
 
   def immobilised?

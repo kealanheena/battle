@@ -21,6 +21,10 @@ class Player
     apply_damage(5)
   end
 
+  def sleep_spell
+    @status.add('immobilised') if rand(1..10) != 10
+  end
+
   def poison_damage
     apply_damage(1) if poisoned?
   end

@@ -40,6 +40,25 @@ describe Game do
     end
   end
 
+  describe '#sleep_spell' do
+    before(:each) do
+      allow(player_1).to receive(:immobilised?) { false }
+      allow(player_2).to receive_messages(
+        :immobilised? => false,
+        :sleep_spell => []
+      )
+    end
+
+    it "should increment the turn counter after an attack" do
+      expect(@game.sleep_spell).to eq 2
+    end
+
+    it "should increment the turn counter by 2 if immobilised" do
+      allow(player_1).to receive(:immobilised?) { true }
+      expect(@game.sleep_spell).to eq 3
+    end
+  end
+
   describe "#poison_damage" do
     before(:each) do
       allow(player_1).to receive(:poisoned?) { false }
