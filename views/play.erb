@@ -1,7 +1,7 @@
 <h1><%= @player_1.name %> vs. <%= @player_2.name %></h1>
 <h2>
   <%= @player_1.name %>'s 
-  <% if @game.poisoned? %>
+  <% if @player_1.poisoned? %>
     (PSN'd)
   <% end %>
   Health: <%= @player_1.health %>
@@ -9,7 +9,7 @@
 
 <h2>
   <%= @player_2.name %>'s 
-  <% if @game.poisoned? %>
+  <% if @player_2.poisoned? %>
     (PSN'd)
   <% end %>
   Health: <%= @player_2.health %>
@@ -17,9 +17,9 @@
 
 <% if @game.turn == 1%>
   <h3>LET'S GET READY TOOOO RUMBLE!!!</h3>
-<% elsif @game.turn.even? || @player_2.paralysed || @player_1.sleeping %>
+<% elsif @game.turn.even? || @player_2.immobilised? %>
   <h3><%= @player_1.name %> attacked <%= @player_2.name %></h3>
-<% elsif !@game.turn.even? || @player_1.paralysed || @player_1.sleeping %>
+<% elsif !@game.turn.even? || @player_1.immobilised? %>
   <h3><%= @player_2.name %> attacked <%= @player_1.name %></h3>
 <% end %>
 

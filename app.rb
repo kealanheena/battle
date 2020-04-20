@@ -31,15 +31,15 @@ class Battle < Sinatra::Base
     redirect :play
   end
 
-  # get '/play/poison' do
-  #   @game.poison_attack
-  #   redirect :play
-  # end
+  get '/play/poison' do
+    @game.special_attack('poisoned')
+    redirect :play
+  end
 
-  # get '/play/electrocute' do
-  #   @game.electric_attack
-  #   redirect :play
-  # end
+  get '/play/electrocute' do
+    @game.special_attack('immobilised')
+    redirect :play
+  end
 
   # get '/play/sleep' do
   #   @game.sleep_spell
