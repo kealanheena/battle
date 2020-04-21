@@ -25,6 +25,10 @@ class Player
     @status.add('immobilised') if rand(1..10) != 10
   end
 
+  def heal(points)
+    @health += points
+  end
+
   def poison_damage
     apply_damage(1) if poisoned?
   end

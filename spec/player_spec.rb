@@ -74,6 +74,13 @@ describe Player do
     end
   end
 
+  describe '#heal' do
+    it 'should add the immobilised status to the status array when sran(1) is called' do
+      dave.attack(10)
+      expect(dave.heal(10)).to eq 60
+    end
+  end
+
   describe '#poisoned?' do
     it 'should return false if player doesn\'t have poisoned status' do
       expect(dave.poisoned?).to eq false
