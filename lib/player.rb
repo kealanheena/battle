@@ -2,10 +2,13 @@ require_relative 'status'
 
 class Player
 
+  MAX_HEALTH = 60
+
   attr_reader :name, :health
 
   def initialize(name, status = Status.new)
     @name = name
+    @max_health = MAX_HEALTH
     @health = 60
     @status = status
   end
@@ -26,7 +29,7 @@ class Player
   end
 
   def heal(points)
-    @health += points
+    over_max?(points) ? @health = @max_health :  @health += points
   end
 
   def poison_damage
@@ -61,6 +64,10 @@ class Player
 
   def reset_status
     @status.remove('immobilised')
+  end
+
+  def over_max?(points)
+    @health + points > @max_health
   end
 
 end

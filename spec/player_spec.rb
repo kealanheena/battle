@@ -75,8 +75,22 @@ describe Player do
   end
 
   describe '#heal' do
-    it 'should add the immobilised status to the status array when sran(1) is called' do
+    it 'should add 10 to your health' do
       dave.attack(10)
+      expect(dave.heal(10)).to eq 60
+    end
+
+    it 'should add 10 to your health' do
+      dave.attack(10)
+      expect(dave.heal(5)).to eq 55
+    end
+
+    it 'shouldn\'t heal you past your max health(60)' do
+      expect(dave.heal(10)).to eq 60
+    end
+
+    it 'shouldn\'t heal you past your max health(60)' do
+      dave.attack(5)
       expect(dave.heal(10)).to eq 60
     end
   end
