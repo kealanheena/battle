@@ -14,12 +14,12 @@ describe Game do
     end
 
     it "should increment the turn counter after an attack" do
-      expect(@game.attack).to eq 2
+      expect(@game.attack(10)).to eq 2
     end
 
     it "should increment the turn counter by 2 after an attack" do
       @game.attack
-      expect(@game.attack).to eq 3
+      expect(@game.attack(10)).to eq 3
     end
   end
 
@@ -56,6 +56,22 @@ describe Game do
     it "should increment the turn counter by 2 if immobilised" do
       allow(player_1).to receive(:immobilised?) { true }
       expect(@game.sleep_spell).to eq 3
+    end
+  end
+
+  describe '#heal_spell' do
+    before(:each) do
+      allow(player_1).to receive(:heal).with(5) { 60 }
+      allow(player_2).to receive(:heal).with(5) { 60 }
+    end
+
+    it "should increment the turn counter after an attack" do
+      expect(@game.heal_spell(5)).to eq 2
+    end
+
+    it "should increment the turn counter by 2 if immobilised" do
+      @game.heal_spell(5)
+      expect(@game.heal_spell(5)).to eq 3
     end
   end
 

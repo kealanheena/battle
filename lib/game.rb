@@ -9,7 +9,7 @@ class Game
     @@instance = self
   end
 
-  def attack(damage = 10)
+  def attack(damage = rand(1..10))
     @turn.even? ? @player_1.attack(damage) : @player_2.attack(damage)
     @turn += 1
   end
@@ -22,6 +22,11 @@ class Game
   def sleep_spell
     @turn.even? ? @player_1.sleep_spell : @player_2.sleep_spell
     immobilised_status
+  end
+
+  def heal_spell(points = rand(1..10))
+    @turn.even? ? @player_2.heal(points) : @player_1.heal(points)
+    @turn += 1
   end
 
   def poison_damage
