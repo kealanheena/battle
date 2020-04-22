@@ -68,6 +68,10 @@ So I can better enjoy a game of Battle,
 I want to make an attack that has a chance of sending my Opponent to Sleep (Opponent definitely misses next turn)
 
 As a Player,
+So I can better enjoy a game of Battle,
+I want one of my abilities to heal me for a random amount of health.
+
+As a Player,
 So I can enjoy my game of Battle,
 I want a sexy user interface
 ```
@@ -134,6 +138,9 @@ You can run tests by running "rspec" in battle file.
 - #sleep_spell
   - should increment the turn counter after an attack
   - should increment the turn counter by 2 if immobilised
+- #heal_spell
+  - should increment the turn counter after an attack
+  - should increment the turn counter by 2 if immobilised
 - #poison_damage
   - should do additional damage if true
   - it should do nothing if false
@@ -160,6 +167,11 @@ You can run tests by running "rspec" in battle file.
 - #sleep_spell
   - should add the immobilised status to the status array when sran(1) is called
   - should return nil when srand(6) is called
+- #heal
+  - should add 10 to your health
+  - should add 5 to your health
+  - shouldn't heal you past your max health(60)
+  - shouldn't heal you past your max health(60)
 - #poisoned?
   - should return false if player doesn\'t have poisoned status
   - should return true if player has poisoned status
@@ -204,6 +216,8 @@ You can run tests by running "rspec" in battle file.
 - a player turn should be skipped if they are paralysed
 - sleep attack should should not decrease health
 - a players turn should be skipped when the sleep attack is used
+- a players health should not go over 60
+- a players health should be healed by 10 points when srand(6) is run
 
 ### Winner
 

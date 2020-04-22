@@ -80,7 +80,7 @@ describe Player do
       expect(dave.heal(10)).to eq 60
     end
 
-    it 'should add 10 to your health' do
+    it 'should add 5 to your health' do
       dave.attack(10)
       expect(dave.heal(5)).to eq 55
     end
