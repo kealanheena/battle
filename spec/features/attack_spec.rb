@@ -47,4 +47,19 @@ describe "homepage", type: :feature do
     click_button 'Electrocute'
     expect(page).to have_content("Harry's Health: 55")
   end
+
+  scenario "a players health should not go over 60" do
+    sign_in_and_play
+    click_button 'Heal'
+    expect(page).to have_content("Kealan's Health: 60")
+  end
+
+  scenario "a players health should be healed by 10 points when srand(6) is run" do
+    sign_in_and_play
+    click_button 'Attack'
+    click_button 'Attack'
+    srand(6)
+    click_button 'Heal'
+    expect(page).to have_content("Kealan's Health: 60")
+  end
 end

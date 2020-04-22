@@ -27,7 +27,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play/attack' do
-    @game.attack(rand(1..10))
+    @game.attack
     redirect :play
   end
 
@@ -43,6 +43,11 @@ class Battle < Sinatra::Base
 
   get '/play/sleep' do
     @game.sleep_spell
+    redirect :play
+  end
+
+  get '/play/heal' do
+    @game.heal_spell
     redirect :play
   end
 
