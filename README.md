@@ -87,6 +87,9 @@ I want a sexy user interface
 - Ruby
 - Capybara
 - Sinatra
+- HTML
+- CSS
+- Bootstrap
 
 ## Features
 
